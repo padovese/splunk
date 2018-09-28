@@ -1,0 +1,5 @@
+The first part is your criteria, source and fields.
+The second one is how you will show it in a table format.
+
+Example:
+host=homework domain=* usr=* type=fail* OR lock* | table _time usr domain type
