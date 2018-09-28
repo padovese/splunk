@@ -7,3 +7,8 @@ host=homework domain=* usr=* type=fail* OR lock* | table _time usr domain type
 Formating dates:
 host=homework usr=* | eval timestamp=strftime(_time, "%d %B, %I:%M %p") | table timestamp usr
 host=homework usr=* | eval timestamp=strftime(_time, "%d/%m/%Y %H:%M") | table timestamp usr
+
+Extracting new fields:
+To do that, you need to click on "extract new field", below the actual fields listed on left side.
+And Follow the steps. After that, you can do a simple query and listen your field:
+host=homework systemid=* | table systemid state
