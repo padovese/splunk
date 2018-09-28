@@ -3,3 +3,7 @@ The second one is how you will show it in a table format.
 
 Example:
 host=homework domain=* usr=* type=fail* OR lock* | table _time usr domain type
+
+Formating dates:
+host=homework usr=* | eval timestamp=strftime(_time, "%d %B, %I:%M %p") | table timestamp usr
+host=homework usr=* | eval timestamp=strftime(_time, "%d/%m/%Y %H:%M") | table timestamp usr
