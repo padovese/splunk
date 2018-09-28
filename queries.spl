@@ -12,3 +12,44 @@ Extracting new fields:
 To do that, you need to click on "extract new field", below the actual fields listed on left side.
 And Follow the steps. After that, you can do a simple query and listen your field:
 host=homework systemid=* | table systemid state
+
+Group functions (likely sql's order by, group by) count, sum avg:
+Top - count the field and order it.
+host=homework | top date_hour
+ps: the limit=15 is option, and 
+
+Rare - is the reverse of the top command
+host=homework | rare date_hour limit=15
+
+Count - likely sql's count
+host=homework | stats count(date_hour) BY date_hour
+
+it is similar to this statement:
+select date_hour, count(date_hour)
+from homework
+group by date_hour
+order by date_hour;
+
+host=homework | stats count(level) BY level date_hour
+
+it is similar to this statement:
+select level, date_hour, count(level)
+from homework
+group by level, date_hour
+order by 2;
+
+host=homework | stats count(usr) BY state
+
+Avg - average of a data
+host=homework | stats avg(date_hour) by domain
+
+assure all the fields are in the query, and give an alias/nickname 
+host=homework date_hour=* usr=* | stats avg(date_hour) AS "average time" by domain
+
+order by a field
+host=homework date_hour=* usr=* | stats avg(date_hour) AS "average time" by domain | sort "average time"
+
+order by a field desc
+host=homework date_hour=* usr=* | stats avg(date_hour) AS "average time" by domain | sort -"average time"
+
+anoter functions that splunk supports: count, max, mean, median, sum, stdev, values, list
