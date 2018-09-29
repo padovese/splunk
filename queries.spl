@@ -57,3 +57,6 @@ anoter functions that splunk supports: count, max, mean, median, sum, stdev, val
 Creating dashboards by these queries:
 host=homework usr=* state=* | chart count(usr) AS "number of users" by state
 host=homework backupduration=* domain=* | timechart avg(backupduration) by domain
+
+creating lookup csv file, uploading it and query it. It's like a sql's decode(csv in attach):
+index="_internal" log_level=* | lookup lookup.csv log_level OUTPUT log_level_converted | table log_level_converted
