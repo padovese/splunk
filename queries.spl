@@ -53,3 +53,7 @@ order by a field desc
 host=homework date_hour=* usr=* | stats avg(date_hour) AS "average time" by domain | sort -"average time"
 
 anoter functions that splunk supports: count, max, mean, median, sum, stdev, values, list
+
+Creating dashboards by these queries:
+host=homework usr=* state=* | chart count(usr) AS "number of users" by state
+host=homework backupduration=* domain=* | timechart avg(backupduration) by domain
