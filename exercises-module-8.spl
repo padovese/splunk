@@ -1,0 +1,22 @@
+Ex1:
+index=main action=purchase | table JSESSIONID
+
+Ex2:
+index=main action=purchase status=200 host=web_application
+
+Ex11:
+index=main action=purchase status=200 host=web_application file="success.do" 
+| table JSESSIONID action status 
+| rename JSESSIONID AS userSessions
+| sort UserSessions
+
+Ex13:
+index=main action=purchase status=200 host=web_application file="success.do" 
+| table JSESSIONID action status 
+| rename JSESSIONID AS userSessions
+| dedup userSessions
+
+dedup is like sql's distinct
+
+Ex14:
+16,139 events
