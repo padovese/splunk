@@ -1,0 +1,30 @@
+Ex3:
+index=main action=purchase status=200 host=web_application file="success.do" 
+| top productId
+
+
+Ex4:
+index=main action=purchase status=200 host=web_application file="success.do" 
+| top productId limit=5
+
+Ex6:
+index=main action=purchase status=200 host=web_application file="success.do" 
+| top productId limit=5 showperc=false
+
+Ex7:
+WC-SH-G04
+
+Ex9:
+index=main status=200 host=web_application
+| rare file
+
+Ex10:
+index=main status=200 host=web_application
+| rare file BY date_month
+
+Ex12:
+index=main status=200 host=web_application (file=cart.do OR file=success.do) | stats count as Transactions by file | rename count as Function
+
+Ex13:
+index=main status=200 host=web_application (file=cart.do OR file=success.do) | stats count by file | rename count as Transactions
+
