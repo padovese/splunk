@@ -28,3 +28,35 @@ index=main status=200 host=web_application (file=cart.do OR file=success.do) | s
 Ex13:
 index=main status=200 host=web_application (file=cart.do OR file=success.do) | stats count by file | rename count as Transactions
 
+eX15:
+index=main host=web_application  | stats dc(JSESSIONID)
+
+ex16:
+index=main host=web_application  | stats dc(JSESSIONID) AS login
+
+ex17:
+index=main host=web_application  | stats dc(JSESSIONID) AS login by clientip
+
+ex18:
+index=main host=web_application  | stats dc(JSESSIONID) AS login by clientip | sort by -login
+436
+
+ex20:
+index=main host=web_application status=200 | stats sum(bytes) as totalBytes
+
+ex21:
+index=main host=web_application status=200 | stats sum(bytes) as totalBytes by file
+
+ex23:
+index=main host=web_application status=200 
+| stats sum(bytes) as totalBytes by file
+| sort by file
+api
+
+ex24:
+index=main host=database | stats avg(Duration)
+
+ex26:
+index=main host=database 
+| stats avg(Duration) as "time to complete" by Command
+| sort by -"time to complete"
