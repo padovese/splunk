@@ -1,0 +1,7 @@
+Scenario 1
+index=main host="web_application" status=403
+| stats count as attempts by clientip
+| sort -attempts
+
+index=main host="web_application" status=200 action=purchase | stats count by productId | sort 5 -count
+limit number of lines
