@@ -1,1 +1,5 @@
 | inputlookup products_lookup
+
+index=main host="web_application" status=200 action=purchase | lookup products_lookup productId as productId OUTPUT product_name as ProductName | stats count by ProductName
+
+index=main host="web_application" status=200 action=purchase | stats sum(Price) as Revenue by ProductName
